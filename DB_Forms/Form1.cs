@@ -51,6 +51,7 @@ namespace DB_Forms
 
         }
 
+        //Menu -> Справочники
         private void dfdfToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var dictForm = new Dict();
@@ -63,9 +64,9 @@ namespace DB_Forms
                     dictForm.Show();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Error:" + ex.Message);
+                MessageBox.Show("Error: connection is not set");
             }
             
         }
