@@ -1,8 +1,5 @@
 ﻿using System;
 using Npgsql;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 
@@ -39,7 +36,7 @@ namespace DB_Forms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new DB_Forms());
         }
         public static void printToTextBox(string message, TextBox tb)
         {

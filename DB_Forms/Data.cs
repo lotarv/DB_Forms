@@ -5,33 +5,29 @@ using System.Windows.Forms;
 
 namespace DB_Forms
 {
-    public partial class Dict : Form
+    public partial class Data : Form
     {
-        public Dict()
+        public Data()
         {
             InitializeComponent();
         }
 
-        private void Dict_Load(object sender, EventArgs e)
+        private void Data_Load(object sender, EventArgs e)
         {
+            //Заполнение combobox
+            comboBox1.Items.Add("orders");
+            comboBox1.Items.Add("services_in_orders");
 
-            //Создание combobox
-            comboBox1.Items.Add("clients");
-            comboBox1.Items.Add("hairdressers");
-            comboBox1.Items.Add("services");
+            comboBox1.SelectedIndexChanged += comboBoxData_SelectedIndexChanged;
 
-            comboBox1.SelectedIndexChanged += comboBoxDictSelectedIndexChanged;
 
             //Задание параметров для блока с таблицей
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-
-
-
         }
-        //Обработка изменения выбранного справочника
-        private void comboBoxDictSelectedIndexChanged(object sender, EventArgs e)
+
+        private void comboBoxData_SelectedIndexChanged(Object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null)
             {
@@ -44,15 +40,9 @@ namespace DB_Forms
                         dt.Load(reader);
 
                         dataGridView1.DataSource = dt;
-
-
                     }
                 }
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
 
         }
     }
