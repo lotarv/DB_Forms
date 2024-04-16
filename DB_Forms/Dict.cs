@@ -55,5 +55,12 @@ namespace DB_Forms
         {
 
         }
+
+        private void createBtn_Click(object sender, EventArgs e)
+        {
+            var selectedTable = comboBox1.SelectedItem.ToString();
+            var createForm1 = new createForm(selectedTable);
+            createForm1.ShowDialog();
+        }
     }
 }

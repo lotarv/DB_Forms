@@ -10,7 +10,8 @@ namespace DB_Forms
         public static NpgsqlConnection connection;
         public static void OpenConnection(string host, string port, string db_name, string username, string pass)
         {
-            string connectionString = $"Host={host};Port={port};Database = {db_name}; User Id = {username};Password = {pass}";
+            //string connectionString = $"Host={host};Port={port};Database = {db_name}; User Id = {username};Password = {pass}";
+            string connectionString = $"Host=localhost;Port=5432;Database = Barbershop; User Id = postgres;Password = password";
             connection = new NpgsqlConnection(connectionString);
             connection.Open();
             if (connection.State == ConnectionState.Open)
