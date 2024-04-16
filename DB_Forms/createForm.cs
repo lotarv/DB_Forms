@@ -29,7 +29,7 @@ namespace DB_Forms
             int spacing = 10;
             int currentY = 20;
             var connection = DataBaseConnection.connection;
-            using (var cmd = new NpgsqlCommand($"SELECT column_name FROM information_schema.columns WHERE table_name = '{tableName}'", connection))
+            using (var cmd = new NpgsqlCommand($"SELECT column_name FROM information_schema.columns WHERE table_name = '{tableName}' ORDER BY ordinal_position", connection))
             {
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -47,6 +47,12 @@ namespace DB_Forms
                         TextBox textbox = new TextBox();
                         textbox.Location = new System.Drawing.Point(100,currentY);
                         textbox.Size = new System.Drawing.Size(textBoxWidth, textbox.Height);
+                        //Поле id делаем недоступным для изменения
+                        if (label.Text == "id")
+                        {
+                            textbox.Text = "default";
+                            textbox.ReadOnly = true;
+                        }
                         this.Controls.Add(textbox);
 
                         fieldList.Add(new Tuple <Label, TextBox> (label, textbox));
@@ -69,29 +75,80 @@ namespace DB_Forms
 
         private void createBtn_click(object sender, EventArgs e)
         {
+            //Список типов данных полей
+            List<string> dataTypes = new List<string>();
+
+            //Заполнение типов данных полей
+            try
+            {
+                using (var command = new NpgsqlCommand($"SELECT * from {tableName}", DataBaseConnection.connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int i = 0;
+                        while (reader.Read())
+                        {
+                            try { dataTypes.Add(reader.GetDataTypeName(i)); }
+                            catch(Exception) { break; }
+                            i++;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            //Создание команды для запроса
             string createCommand = $"INSERT INTO {tableName} VALUES (";
             var parameters = new List<NpgsqlParameter>();
             int parameterIndex = 1;
-            foreach (var field in fieldList)
+            //Добавление default если поле default
+            for (var i = 0; i < dataTypes.Count; i++)
             {
+                if (fieldList[i].Item2.Text == "default")
+                {
+                    createCommand += "default,";
+                    continue;
+                }
                 createCommand += $"@{parameterIndex},";
-                parameters.Add(new NpgsqlParameter($"@{parameterIndex}", field.Item2.Text));
+                //Проверка на тип данных и добавление параметра
+                if (dataTypes[i].Contains("int") && fieldList[i].Item2.Text != "default")
+                {
+                    parameters.Add(new NpgsqlParameter($"@{parameterIndex}", int.Parse(fieldList[i].Item2.Text)));
+                    
+
+                }
+                else
+                {
+                    parameters.Add(new NpgsqlParameter($"@{parameterIndex}", fieldList[i].Item2.Text));
+                    
+
+                }
                 parameterIndex++;
             }
+
+
             string newstr = createCommand.Remove(createCommand.Length - 1) + ")";
+            createCommand = newstr;
             try
             {
-                using (var command = new NpgsqlCommand(newstr, DataBaseConnection.connection))
+                using (var command = new NpgsqlCommand(createCommand, DataBaseConnection.connection))
                 {
                     //Добавление параметров в команду
                     foreach (var parameter in parameters)
                     {
                         command.Parameters.Add(parameter);
+                        Console.WriteLine(parameter.ToString());
                     }
                     command.ExecuteNonQuery();
+                    fieldList.Clear();
+                    this.Close();
+
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
