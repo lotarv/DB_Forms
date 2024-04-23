@@ -67,5 +67,11 @@ namespace DB_Forms
                 creationForm.ShowDialog();
             }
         }
+
+        private void updateBtn_Click(object sender, EventArgs e)
+        {
+            var updateForm = new UpdateOrderForm(dataGridView1, selectedTable);
+            updateForm.ShowDialog();
+        }
     }
 }
