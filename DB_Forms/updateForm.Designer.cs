@@ -1,6 +1,6 @@
 ﻿namespace DB_Forms
 {
-    partial class createForm
+    partial class updateForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // createForm
+            // updateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(293, 357);
-            this.Name = "createForm";
-            this.Text = "createForm";
-            this.Load += new System.EventHandler(this.createForm_Load);
+            this.ClientSize = new System.Drawing.Size(604, 406);
+            this.Name = "updateForm";
+            this.Text = "updateForm";
             this.ResumeLayout(false);
 
         }

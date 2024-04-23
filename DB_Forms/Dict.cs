@@ -62,5 +62,19 @@ namespace DB_Forms
             var createForm1 = new createForm(selectedTable);
             createForm1.ShowDialog();
         }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            var selectedTable = comboBox1.SelectedItem.ToString();
+            var delForm = new deleteForm(dataGridView1, selectedTable);
+
+            delForm.ShowDialog();
+        }
+
+        private void updateBtn_Click(object sender, EventArgs e)
+        {
+            var updForm = new updateForm();
+            updForm.ShowDialog();
+        }
     }
 }

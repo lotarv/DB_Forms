@@ -119,6 +119,12 @@
     <Compile Include="DB_Forms.Designer.cs">
       <DependentUpon>DB_Forms.cs</DependentUpon>
     </Compile>
+    <Compile Include="deleteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deleteForm.Designer.cs">
+      <DependentUpon>deleteForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dict.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,12 @@
     <Compile Include="Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
+    <Compile Include="updateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateForm.Designer.cs">
+      <DependentUpon>updateForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Data.resx">
       <DependentUpon>Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="deleteForm.resx">
+      <DependentUpon>deleteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dict.resx">
       <DependentUpon>Dict.cs</DependentUpon>
@@ -159,6 +174,9 @@
     </Compile>
     <EmbeddedResource Include="Reports.resx">
       <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updateForm.resx">
+      <DependentUpon>updateForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
