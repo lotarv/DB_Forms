@@ -10,11 +10,13 @@ namespace DB_Forms
     {
         static List<Tuple<Label, TextBox>> fieldList = new List<Tuple<Label, TextBox>>();
         private string tableName;
-        public createForm(string tableName)
+        private DataGridView dgv;
+        public createForm(string tableName, DataGridView dgv)
         {
             InitializeComponent();
             showCreationInfo(tableName);
             this.tableName = tableName;
+            this.dgv = dgv;
         }
 
         private void createForm_Load(object sender, EventArgs e)
@@ -144,6 +146,9 @@ namespace DB_Forms
                     }
                     command.ExecuteNonQuery();
                     fieldList.Clear();
+                    MessageBox.Show("Запись успешно добавлена");
+                    Program.refreshTableView(dgv, tableName);
+
                     this.Close();
 
                 }

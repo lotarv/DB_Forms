@@ -26,6 +26,8 @@ namespace DB_Forms
 
         private void deleteForm_Load(object sender, EventArgs e)
         {
+            
+
             label1.Text = "Вы собираетесь удалить следующую запись:";
             string message = "";
             //Получение id необходимого для удаления
@@ -60,6 +62,7 @@ namespace DB_Forms
                 {
                     delCommand.ExecuteNonQuery();
                     MessageBox.Show("Запись удалена успешно");
+                    Program.refreshTableView(dgv, tableName);
                     this.Close();
                 }
             }

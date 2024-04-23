@@ -7,6 +7,7 @@ namespace DB_Forms
 {
     public partial class Dict : Form
     {
+        static string selectedTable;
         public Dict()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace DB_Forms
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            
 
 
 
@@ -35,8 +37,8 @@ namespace DB_Forms
         {
             if (comboBox1.SelectedItem != null)
             {
-                string selectedDict = comboBox1.SelectedItem.ToString();
-                using (var cmd = new NpgsqlCommand($"SELECT * FROM {selectedDict}", DataBaseConnection.connection))
+                selectedTable = comboBox1.SelectedItem.ToString();
+                using (var cmd = new NpgsqlCommand($"SELECT * FROM {selectedTable}", DataBaseConnection.connection))
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -58,22 +60,19 @@ namespace DB_Forms
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            var selectedTable = comboBox1.SelectedItem.ToString();
-            var createForm1 = new createForm(selectedTable);
+            var createForm1 = new createForm(selectedTable, dataGridView1);
             createForm1.ShowDialog();
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            var selectedTable = comboBox1.SelectedItem.ToString();
             var delForm = new deleteForm(dataGridView1, selectedTable);
-
             delForm.ShowDialog();
         }
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            var updForm = new updateForm();
+            var updForm = new updateForm(dataGridView1,selectedTable);
             updForm.ShowDialog();
         }
     }

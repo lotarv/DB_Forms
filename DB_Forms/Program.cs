@@ -44,5 +44,21 @@ namespace DB_Forms
             tb.Text = message;
         }
 
+        public static void refreshTableView(DataGridView dataGrid, string tableName)
+        {
+            using (var cmd = new NpgsqlCommand($"SELECT * FROM {tableName}", DataBaseConnection.connection))
+            {
+                using (var reader = cmd.ExecuteReader())
+                {
+                    var dt = new DataTable();
+                    dt.Load(reader);
+
+                    dataGrid.DataSource = dt;
+
+
+                }
+            }
+        }
+
     }
 }
