@@ -26,20 +26,31 @@ namespace DB_Forms
 
         private void deleteForm_Load(object sender, EventArgs e)
         {
-            
+
 
             label1.Text = "Вы собираетесь удалить следующую запись:";
             string message = "";
             //Получение id необходимого для удаления
-            
-            foreach(DataGridViewCell cell in dgv.SelectedCells)
+            if (tableName == "services_in_orders")
             {
-                if (idToDelete == "")
+                foreach (DataGridViewCell cell in dgv.SelectedCells)
                 {
                     idToDelete = cell.Value.ToString();
+                    message += cell.Value.ToString() + " ";
                 }
-                message += cell.Value.ToString() + " ";
             }
+            else
+            {
+                foreach (DataGridViewCell cell in dgv.SelectedCells)
+                {
+                    if (idToDelete == "")
+                    {
+                        idToDelete = cell.Value.ToString();
+                    }
+                    message += cell.Value.ToString() + " ";
+                }
+            }
+            
             label2.Text = message;
         }
 

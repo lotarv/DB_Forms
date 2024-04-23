@@ -7,6 +7,7 @@ namespace DB_Forms
 {
     public partial class Data : Form
     {
+        private string selectedTable;
         public Data()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace DB_Forms
         {
             if (comboBox1.SelectedItem != null)
             {
+                selectedTable = comboBox1.SelectedItem.ToString();
                 string selectedDict = comboBox1.SelectedItem.ToString();
                 using (var cmd = new NpgsqlCommand($"SELECT * FROM {selectedDict}", DataBaseConnection.connection))
                 {
@@ -44,6 +46,26 @@ namespace DB_Forms
                 }
             }
 
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            var delForm = new deleteForm(dataGridView1, selectedTable);
+            delForm.ShowDialog();
+        }
+
+        private void createBtn_Click(object sender, EventArgs e)
+        {
+            if (selectedTable == "orders")
+            {
+                var creationForm = new CreateOrderForm(dataGridView1, selectedTable);
+                creationForm.ShowDialog();
+            }
+            else if (selectedTable == "services_in_orders")
+            {
+                var creationForm = new CreateServiceInOrderForm();
+                creationForm.ShowDialog();
+            }
         }
     }
 }

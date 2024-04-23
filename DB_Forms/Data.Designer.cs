@@ -31,6 +31,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.deleteBtn = new System.Windows.Forms.Button();
+            this.updateBtn = new System.Windows.Forms.Button();
+            this.createBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,11 +71,46 @@
             this.dataGridView1.Size = new System.Drawing.Size(458, 228);
             this.dataGridView1.TabIndex = 4;
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Location = new System.Drawing.Point(533, 297);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(106, 28);
+            this.deleteBtn.TabIndex = 9;
+            this.deleteBtn.Text = "delete";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
+            // updateBtn
+            // 
+            this.updateBtn.Location = new System.Drawing.Point(411, 297);
+            this.updateBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.updateBtn.Name = "updateBtn";
+            this.updateBtn.Size = new System.Drawing.Size(106, 28);
+            this.updateBtn.TabIndex = 8;
+            this.updateBtn.Text = "update";
+            this.updateBtn.UseVisualStyleBackColor = true;
+            // 
+            // createBtn
+            // 
+            this.createBtn.Location = new System.Drawing.Point(289, 297);
+            this.createBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.createBtn.Name = "createBtn";
+            this.createBtn.Size = new System.Drawing.Size(106, 28);
+            this.createBtn.TabIndex = 7;
+            this.createBtn.Text = "create";
+            this.createBtn.UseVisualStyleBackColor = true;
+            this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
+            // 
             // Data
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.deleteBtn);
+            this.Controls.Add(this.updateBtn);
+            this.Controls.Add(this.createBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
@@ -90,5 +128,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.Button updateBtn;
+        private System.Windows.Forms.Button createBtn;
     }
 }
