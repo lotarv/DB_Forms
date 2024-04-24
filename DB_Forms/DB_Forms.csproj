@@ -163,6 +163,12 @@
     <Compile Include="UpdateOrderForm.Designer.cs">
       <DependentUpon>UpdateOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateServiceInOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateServiceInOrderForm.Designer.cs">
+      <DependentUpon>UpdateServiceInOrderForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateOrderForm.resx">
       <DependentUpon>UpdateOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateServiceInOrderForm.resx">
+      <DependentUpon>UpdateServiceInOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

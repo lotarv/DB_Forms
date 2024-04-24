@@ -63,15 +63,23 @@ namespace DB_Forms
             }
             else if (selectedTable == "services_in_orders")
             {
-                var creationForm = new CreateServiceInOrderForm();
+                var creationForm = new CreateServiceInOrderForm(dataGridView1, selectedTable);
                 creationForm.ShowDialog();
             }
         }
 
         private void updateBtn_Click(object sender, EventArgs e)
         {
-            var updateForm = new UpdateOrderForm(dataGridView1, selectedTable);
-            updateForm.ShowDialog();
+            if (selectedTable == "orders")
+            {
+                var updateForm = new UpdateOrderForm(dataGridView1, selectedTable);
+                updateForm.ShowDialog();
+            }
+            else if (selectedTable == "services_in_orders")
+            {
+                var updateForm = new UpdateServiceInOrderForm(dataGridView1, selectedTable);
+                updateForm.ShowDialog();
+            }
         }
     }
 }

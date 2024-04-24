@@ -128,7 +128,6 @@ namespace DB_Forms
                     newClient_id = clientInfo.Item1;
                 }
             }
-            //newDate = newDate.Replace('.', '-');
             string sqlQuery = $"UPDATE orders SET hairdresser_id = {newHairdresser_id}, client_id = {newClient_id}, cost = {newCost}, form_date = '{newDate}', status = '{newStatus}' WHERE id = {fields[0]}";
             Console.WriteLine(sqlQuery);
             
