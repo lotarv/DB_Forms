@@ -30,7 +30,6 @@ namespace DB_Forms
         }
         private void fillServices()
         {
-            Console.WriteLine("kek");
             string sqlQuery = "SELECT id, name FROM services";
             using (var cmd = new NpgsqlCommand(sqlQuery, DataBaseConnection.connection))
             {
@@ -40,8 +39,6 @@ namespace DB_Forms
                     {
                         string id = reader.GetInt16(0).ToString();
                         string name = reader.GetString(1);
-                        Console.WriteLine(id);
-                        Console.WriteLine(name);
                         services.Add(new Tuple<string, string>(id, name));
                         serviceInput.Items.Add(reader.GetString(1));
                     }
