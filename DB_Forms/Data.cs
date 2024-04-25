@@ -34,6 +34,8 @@ namespace DB_Forms
             {
                 selectedTable = comboBox1.SelectedItem.ToString();
                 string selectedDict = comboBox1.SelectedItem.ToString();
+                if (selectedDict == "orders") selectedDict = "\"ordersview1\"";
+                updateOrdersView();
                 using (var cmd = new NpgsqlCommand($"SELECT * FROM {selectedDict}", DataBaseConnection.connection))
                 {
                     using (var reader = cmd.ExecuteReader())
@@ -80,6 +82,15 @@ namespace DB_Forms
                 var updateForm = new UpdateServiceInOrderForm(dataGridView1, selectedTable);
                 updateForm.ShowDialog();
             }
+        }
+        private void updateOrdersView()
+        {
+            string sqlQuery = "REFRESH MATERIALIZED VIEW ordersview1\r\n";
+            using (var cmd = new NpgsqlCommand(sqlQuery, DataBaseConnection.connection))
+            {
+                cmd.ExecuteNonQuery();
+            }
+            
         }
     }
 }

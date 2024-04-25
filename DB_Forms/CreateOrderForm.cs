@@ -34,6 +34,7 @@ namespace DB_Forms
             statusInput.Items.Add("Не выполнен");
             fillHairdressers();
             fillClients();
+            getIdOfClient();
             
         }
 
@@ -122,6 +123,14 @@ namespace DB_Forms
 
 
 
+        }
+        public void getIdOfClient()
+        {
+            foreach (var client in clientsList)
+            {
+                Console.WriteLine(client.Item1);
+                Console.WriteLine(client.Item2);
+            }
         }
     }
 }
