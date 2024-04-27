@@ -111,5 +111,11 @@ namespace DB_Forms
         {
             this.Close();
         }
+
+        private void экспортToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var exportForm = new exportForm();
+            exportForm.ShowDialog();
+        }
     }
 }
