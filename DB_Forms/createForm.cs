@@ -50,7 +50,7 @@ namespace DB_Forms
                         textbox.Location = new System.Drawing.Point(100,currentY);
                         textbox.Size = new System.Drawing.Size(textBoxWidth, textbox.Height);
                         //Поле id делаем недоступным для изменения
-                        if (label.Text == "id")
+                        if (label.Text == "id" || label.Text == "isdeleted")
                         {
                             textbox.Text = "default";
                             textbox.ReadOnly = true;
